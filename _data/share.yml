@@ -2,9 +2,9 @@
 #  Icons from <https://fontawesome.com/>
 
 platforms:
-  - type: KakaoTalk
-    icon: "fa-brands fa-kakaotalk"
-    link: "https://story.kakao.com/share?url=URL"
+  # - type: KakaoTalk
+  #   icon: "fa-brands fa-kakaotalk"
+  #   link: "https://"
 
   - type: Twitter
     icon: "fa-brands fa-square-x-twitter"
