@@ -6,12 +6,12 @@
   >
   <span class="share-icons">
     {% capture title %}{{ page.title }} - {{ site.title }}{% endcapture %} {%
-    assign title = title | uri_escape %} {% assign url = page.url | absolute_url
+    assign title = title | uri_escape %} {% assign url = page.url | relative_url
     | url_encode %}
 
     <!-- Share Link to Kakao -->
-    {% capture pre_img %}{{ page.image.path | default: page.image }}"{%
-    endcapture %}
+    {% capture image %}{{ page.image.path | default: page.image }}"{%endcapture
+    %}
     <script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
     <script>
       Kakao.init("615e3c2c1fcdad4f8f9fbfeb385b8c54");
@@ -22,7 +22,7 @@
             title: "{{ page.title }}",
             description: "{{ post.excerpt }}",
             url: "{{ page.url }}",
-            THU: "{{page.image.path}}"
+            thu: "{{ page.image.path }}"
           }
         });
       }
@@ -40,37 +40,17 @@
     </a>
 
     <!-- Share Link to X -->
-    {% for share in site.data.share.platforms -%} {%- capture tooltip -%}
-    data-bs-toggle="tooltip" data-bs-placement="top" title="{{ share.type }}"
-    aria-label="{{ share.type }}" {%- endcapture -%} {% if share.type ==
-    'Mastodon' %}
-    <script
-      defer
-      type="module"
-      src="https://cdn.jsdelivr.net/npm/@justinribeiro/share-to-mastodon/+esm"
-    ></script>
-    <button class="btn text-start" {{ tooltip }}>
-      <share-to-mastodon
-        class="share-mastodon"
-        message="{{ title }}"
-        url="{{ url }}"
-        {%-
-        if
-        share.instances
-        -%}
-        customInstanceList="{{ share.instances | jsonify | xml_escape }}"
-        {%-
-        endif
-        %}
-      >
-        <i class="fa-fw {{ share.icon }}"></i>
-      </share-to-mastodon>
-    </button>
-
-    {% continue %} {% endif %} {% assign link = share.link | replace: 'TITLE',
-    title | replace: 'URL', url %}
-
-    <a href="{{ link }}" target="_blank" rel="noopener" {{ tooltip }}>
+    {% for share in site.data.share.platforms %} {% assign link = share.link |
+    replace: 'TITLE', title | replace: 'URL', url %}
+    <a
+      href="{{ link }}"
+      data-bs-toggle="tooltip"
+      data-bs-placement="top"
+      title="{{ share.type }}"
+      target="_blank"
+      rel="noopener"
+      aria-label="{{ share.type }}"
+    >
       <i class="fa-fw {{ share.icon }}"></i>
     </a>
     {% endfor %}
