@@ -7,7 +7,7 @@
   <span class="share-icons">
     {% capture title %}{{ page.title }} - {{ site.title }}{% endcapture %} {%
     assign title = title | uri_escape %} {% assign url = page.url | relative_url
-    | url_encode %}
+    | uri_escape %}
 
     <!-- Share Link to Kakao -->
     {% capture image %}{{ page.image.path | default: page.image }}"{%endcapture
@@ -16,19 +16,22 @@
     <script>
       Kakao.init("615e3c2c1fcdad4f8f9fbfeb385b8c54");
       function shareLink() {
+        const linkData = {
+          title: "{{ page.title }}",
+          description: "{{ post.excerpt }}",
+          post: "{{ page.url | remove_first: '/' }}",
+          thu: "{{ page.image.path }}"
+        };
+        console.log(linkData);
         Kakao.Link.sendCustom({
           templateId: 115971,
-          templateArgs: {
-            title: "{{ page.title }}",
-            description: "{{ post.excerpt }}",
-            url: "{{ page.url }}",
-            thu: "{{ page.image.path }}"
-          }
+          templateArgs: linkData
         });
       }
     </script>
+
     <a
-      onclick="shareLink(this);"
+      onclick="shareLink();"
       data-bs-toggle="tooltip"
       data-bs-placement="top"
       title="KakaoTalk"

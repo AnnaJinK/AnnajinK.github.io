@@ -23,7 +23,8 @@ description: >- # used by seo meta and the atom feed
 
 # Fill in the protocol & hostname for your site.
 # E.g. 'https://username.github.io', note that it does not end with a '/'.
-url: ""
+url: "https://annajink.github.io"
+baseurl: "" # the subpath of your site, e.g. '/blog'
 
 github:
   username: AnnajinK # change to your GitHub username
@@ -34,7 +35,7 @@ github:
 social:
   # Change to your full name.
   # It will be displayed as the default author of the posts and the copyright owner in the Footer
-  name: Heejoong Kim
+  name: AnnajinK
   email: hee.kim6133@gmail.com # change to your email address
   links:
     # The first element serves as the copyright owner's link
