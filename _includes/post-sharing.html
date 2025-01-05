@@ -20,7 +20,7 @@
           title: "{{ page.title }}",
           description: "{{ post.excerpt }}",
           post: "{{ page.url | remove_first: '/' }}",
-          thu: "{{ page.image.path }}"
+          image: "{{ page.image.path }}"
         };
         console.log(linkData);
         Kakao.Link.sendCustom({
